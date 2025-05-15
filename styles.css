@@ -20,7 +20,7 @@ header {
   font-weight: bold;
 }
 
-.login-btn, .cart-btn {
+.login-btn, .giohang-btn {
   background-color: white;
   color: #009688;
   border: none;
@@ -118,12 +118,12 @@ footer {
   color: white;
 }
 
-#cart-items {
+#giohang-items {
   list-style-type: none;
   padding-left: 0;
 }
 
-#cart-items li {
+#giohang-items li {
   padding: 8px;
   border-bottom: 1px solid #ccc;
 }
