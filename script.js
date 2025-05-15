@@ -1,10 +1,12 @@
 const products = [
-  { name: "Trà Chanh", price: 15000 },
-  { name: "Trà Sữa", price: 25000 },
-  { name: "Nước Cam", price: 20000 }
+  { name: "Trà Chanh", price: 15000, image: "images/tra_chanh.jpg" },
+  { name: "Trà Sữa", price: 25000, image: "images/tra_sua.jpg" },
+  { name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
+  { name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" }
 ];
 
 const cart = [];
+let selectedProductIndex = null;
 
 function renderProducts() {
   const container = document.getElementById("product-list");
@@ -13,21 +15,66 @@ function renderProducts() {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="product-image" />
       <h3>${product.name}</h3>
       <p>Giá: ${product.price.toLocaleString()}đ</p>
-      <button onclick="addToCart(${index})">Thêm vào giỏ</button>
+      <button onclick="showQuantityModal(${index})">Thêm vào giỏ</button>
     `;
     container.appendChild(card);
   });
 }
 
-function addToCart(index) {
-  cart.push(products[index]);
+function showQuantityModal(index) {
+  selectedProductIndex = index;
+  document.getElementById("quantityInput").value = 1;
+  document.getElementById("quantityModal").style.display = "flex";
+}
+
+function confirmAddToCart() {
+  const quantity = parseInt(document.getElementById("quantityInput").value);
+  if (isNaN(quantity) || quantity < 1) {
+    alert("Vui lòng nhập số lượng hợp lệ.");
+    return;
+  }
+
+  const product = products[selectedProductIndex];
+  const existing = cart.find(item => item.name === product.name);
+  if (existing) {
+    existing.quantity += quantity;
+  } else {
+    cart.push({ ...product, quantity });
+  }
+
   updateCartCount();
+  closeQuantityModal();
+  showToast("Đã thêm vào giỏ hàng!");
+}
+
+function closeQuantityModal() {
+  document.getElementById("quantityModal").style.display = "none";
+}
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.className = "toast show";
+  setTimeout(() => {
+    toast.className = "toast";
+  }, 2500);
+}
+
+function removeFromCart(productName) {
+  const index = cart.findIndex(item => item.name === productName);
+  if (index > -1) {
+    cart.splice(index, 1);
+  }
+  updateCartCount();
+  renderCart();
 }
 
 function updateCartCount() {
-  document.getElementById("giohang-count").innerText = cart.length;
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  document.getElementById("cart-count").innerText = totalItems;
 }
 
 function toggleModal(show) {
@@ -53,11 +100,19 @@ function toggleCart() {
 }
 
 function renderCart() {
-  const list = document.getElementById("giohang-items");
+  const list = document.getElementById("cart-items");
   list.innerHTML = "";
+  if (cart.length === 0) {
+    list.innerHTML = "<li>Giỏ hàng trống.</li>";
+    return;
+  }
+
   cart.forEach(item => {
     const li = document.createElement("li");
-    li.textContent = `${item.name} - ${item.price.toLocaleString()}đ`;
+    li.innerHTML = `
+      ${item.name} x${item.quantity} - ${item.price.toLocaleString()}đ
+      <button onclick="removeFromCart('${item.name}')">Xóa</button>
+    `;
     list.appendChild(li);
   });
 }
@@ -65,8 +120,10 @@ function renderCart() {
 window.onclick = function(event) {
   const loginModal = document.getElementById("loginModal");
   const cartModal = document.getElementById("cartModal");
+  const quantityModal = document.getElementById("quantityModal");
   if (event.target === loginModal) toggleModal(false);
   if (event.target === cartModal) cartModal.style.display = "none";
+  if (event.target === quantityModal) closeQuantityModal();
 }
 
 document.getElementById("search").addEventListener("input", function(e) {
@@ -78,9 +135,10 @@ document.getElementById("search").addEventListener("input", function(e) {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" class="product-image" />
       <h3>${product.name}</h3>
       <p>Giá: ${product.price.toLocaleString()}đ</p>
-      <button onclick="addToCart(${products.indexOf(product)})">Thêm vào giỏ</button>
+      <button onclick="showQuantityModal(${products.indexOf(product)})">Thêm vào giỏ</button>
     `;
     container.appendChild(card);
   });

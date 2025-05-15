@@ -12,7 +12,7 @@
     <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <div>
       <button class="login-btn" onclick="toggleModal(true)">Đăng nhập</button>
-      <button class="giohang-btn" onclick="toggleCart()">Giỏ hàng (<span id="giohang-count">0</span>)</button>
+      <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button>
     </div>
   </header>
 
@@ -23,8 +23,25 @@
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Nước Giải Khát Mát Lạnh</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="contact-item">
+        <i class="fab fa-facebook-f"></i>
+        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-comment-dots"></i>
+        <a href="#" target="_blank">Zalo</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="#">0123 456 789</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="#">duytung2506@gmail.com</a>
+      </div>
+    </div>
   </footer>
 
   <div id="loginModal" class="modal">
@@ -52,10 +69,25 @@
   <div id="cartModal" class="modal">
     <div class="modal-content">
       <h2>Giỏ hàng</h2>
-      <ul id="giohang-items"></ul>
+      <ul id="cart-items"></ul>
       <button onclick="toggleCart()">Đóng</button>
     </div>
   </div>
+  <!-- Modal nhập số lượng -->
+<div id="quantityModal" class="modal">
+  <div class="modal-content">
+    <h3>Nhập số lượng</h3>
+    <input type="number" id="quantityInput" min="1" value="1" />
+    <div style="margin-top: 10px;">
+      <button onclick="confirmAddToCart()">Xác nhận</button>
+      <hr>
+      <button onclick="closeQuantityModal()">Hủy</button>
+    </div>
+  </div>
+</div>
+
+<!-- Thông báo thành công -->
+<div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>
 
   <script src="script.js"></script>
 </body>
