@@ -8,12 +8,6 @@
 </head>
 <body>
   <header>
-    <div class="theme-toggle" onclick="toggleTheme()">
-      <div class="toggle-thumb"></div>
-      <span class="icon sun">☀️</span>
-      <span class="icon moon">🌑</span>
-    </div>
-
     <div class="logo">Nước Giải Khát Mát Lạnh</div>
     <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <div>
@@ -40,13 +34,12 @@
   </ul>
 </div>
 
-
-  <div class="container">
+<main><div class="container">
     <h1>Danh sách sản phẩm</h1>
     <div class="products" id="product-list">
-      <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
+      <!-- san pham duoc them bang js -->
     </div>
-  </div>
+  </div></main>
   <div id="cartModal" class="modal">
     <div class="modal-content">
       <h2>Giỏ hàng</h2>
@@ -54,7 +47,7 @@
       <button onclick="toggleCart()">Đóng</button>
     </div>
   </div>
-  <!-- Modal nhập số lượng -->
+  <!-- modal nhap so luong -->
 <div id="quantityModal" class="modal">
   <div class="modal-content">
     <h3>Nhập số lượng</h3>
@@ -87,7 +80,7 @@
     </div>
   </footer>
 
-<!-- Thông báo thành công -->
+<!-- thong bao them gio hang thanh cong -->
 <div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>
  <div id="modal-container"></div>
 

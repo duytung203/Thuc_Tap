@@ -2,7 +2,17 @@ const products = [
   { name: "Trà Chanh", price: 15000, image: "images/tra_chanh.jpg" },
   { name: "Trà Sữa", price: 25000, image: "images/tra_sua.jpg" },
   { name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
-  { name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" }
+  { name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" }, 
 ];
 
 const cart = [];
@@ -149,27 +159,9 @@ document.getElementById("search").addEventListener("input", function(e) {
 });
 
 renderProducts();
-
-
-function toggleTheme() {
-  document.body.classList.toggle("dark-mode");
-
-  // Lưu trạng thái vào localStorage để giữ lại khi tải lại trang
-  const isDark = document.body.classList.contains("dark-mode");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-}
-
-// Tải lại trang vẫn giữ chế độ trước đó
-window.onload = () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-  }
-};
-
   document.querySelectorAll('.toggle-submenu').forEach(btn => {
     btn.addEventListener('click', function (e) {
-      e.preventDefault(); // Ngăn chuyển trang
+      e.preventDefault(); // ngan k cho chuyen trang
       const parent = this.parentElement;
       parent.classList.toggle('open');
     });
