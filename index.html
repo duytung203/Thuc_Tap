@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beverage Store</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Thanh Trà Coffee</title>
+  <link rel="stylesheet" href="/CSS/styles.css">
 </head>
 <body>
   <header>
@@ -43,29 +43,6 @@
       </div>
     </div>
   </footer>
-
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <div class="tabs">
-        <button class="active" onclick="switchTab('login')">Đăng nhập</button>
-        <button onclick="switchTab('register')">Đăng ký</button>
-      </div>
-      <div id="loginForm">
-        <h2>Đăng nhập</h2>
-        <input type="text" placeholder="Email hoặc tên đăng nhập">
-        <input type="password" placeholder="Mật khẩu">
-        <button>Đăng nhập</button>
-      </div>
-      <div id="registerForm" style="display: none;">
-        <h2>Đăng ký</h2>
-        <input type="text" placeholder="Họ tên">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Mật khẩu">
-        <button>Đăng ký</button>
-      </div>
-    </div>
-  </div>
-
   <div id="cartModal" class="modal">
     <div class="modal-content">
       <h2>Giỏ hàng</h2>
@@ -88,6 +65,7 @@
 
 <!-- Thông báo thành công -->
 <div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>
+ <div id="modal-container"></div>
 
   <script src="script.js"></script>
 </body>

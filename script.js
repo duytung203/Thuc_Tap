@@ -81,6 +81,11 @@ function toggleModal(show) {
   document.getElementById('loginModal').style.display = show ? 'flex' : 'none';
 }
 
+fetch('login.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('modal-container').innerHTML = data;
+  });
 function switchTab(tab) {
   document.getElementById('loginForm').style.display = tab === 'login' ? 'block' : 'none';
   document.getElementById('registerForm').style.display = tab === 'register' ? 'block' : 'none';
