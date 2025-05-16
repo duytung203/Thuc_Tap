@@ -143,8 +143,7 @@ document.getElementById("search").addEventListener("input", function(e) {
       <img src="${product.image}" alt="${product.name}" class="product-image" />
       <h3>${product.name}</h3>
       <p>Giá: ${product.price.toLocaleString()}đ</p>
-      <button onclick="showQuantityModal(${products.indexOf(product)})">Thêm vào giỏ</button>
-    `;
+      <button onclick="showQuantityModal(${products.indexOf(product)})">Thêm vào giỏ</button>`;
     container.appendChild(card);
   });
 });
