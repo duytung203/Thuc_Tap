@@ -8,6 +8,12 @@
 </head>
 <body>
   <header>
+    <div class="theme-toggle" onclick="toggleTheme()">
+      <div class="toggle-thumb"></div>
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌑</span>
+    </div>
+
     <div class="logo">Nước Giải Khát Mát Lạnh</div>
     <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <div>
@@ -15,6 +21,25 @@
       <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button>
     </div>
   </header>
+ <div class="sidebar">
+  <ul class="menu">
+    <li><a href="#"> Trang chủ</a></li>
+
+    <li class="has-submenu">
+      <a href="#" class="toggle-submenu"> Danh sách mặt hàng</a>
+      <ul class="submenu">
+        <a href="#">Trà</a>
+        <a href="#">Coffee</a>
+        <a href="#">Sinh tố</a>
+        <a href="#">Đồ ăn vặt</a>
+      </ul>
+    </li>
+
+    <li><a href="#"> Hàng bán chạy</a></li>
+    <li><a href="#"> Giới thiệu</a></li>
+  </ul>
+</div>
+
 
   <div class="container">
     <h1>Danh sách sản phẩm</h1>
@@ -22,27 +47,6 @@
       <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
     </div>
   </div>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="contact-item">
-        <i class="fab fa-facebook-f"></i>
-        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-comment-dots"></i>
-        <a href="#" target="_blank">Zalo</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-phone"></i>
-        <a href="#">0123 456 789</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <a href="#">duytung2506@gmail.com</a>
-      </div>
-    </div>
-  </footer>
   <div id="cartModal" class="modal">
     <div class="modal-content">
       <h2>Giỏ hàng</h2>
@@ -62,6 +66,26 @@
     </div>
   </div>
 </div>
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="contact-item">
+        <i class="fab fa-facebook-f"></i>
+        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-comment-dots"></i>
+        <a href="#" target="_blank">Zalo</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="#">0123 456 789</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="#">duytung2506@gmail.com</a>
+      </div>
+    </div>
+  </footer>
 
 <!-- Thông báo thành công -->
 <div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>

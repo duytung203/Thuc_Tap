@@ -149,3 +149,34 @@ document.getElementById("search").addEventListener("input", function(e) {
 });
 
 renderProducts();
+
+
+function toggleTheme() {
+  document.body.classList.toggle("dark-mode");
+
+  // Lưu trạng thái vào localStorage để giữ lại khi tải lại trang
+  const isDark = document.body.classList.contains("dark-mode");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
+// Tải lại trang vẫn giữ chế độ trước đó
+window.onload = () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+};
+
+  document.querySelectorAll('.toggle-submenu').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault(); // Ngăn chuyển trang
+      const parent = this.parentElement;
+      parent.classList.toggle('open');
+    });
+  });
+
+
+
+
+
+
