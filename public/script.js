@@ -184,11 +184,11 @@ renderProducts();
 }
 
 
+document.getElementById('registerBtn')?.addEventListener('click', register);
 async function register() {
-  const username = document.querySelector('#registerForm input[name="username"]');
-  const email = document.querySelector('#registerForm input[type="email"]');
-  const password = document.querySelector('#registerForm input[type="password"]');
-
+  const username = document.getElementById('registerUsername').value;
+  const email = document.getElementById('registerEmail').value;
+  const password = document.getElementById('registerPassword').value;
   const res = await fetch('/api/auth/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
