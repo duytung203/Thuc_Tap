@@ -183,7 +183,7 @@ renderProducts();
 
     // điều hướng theo vai trò
     if (data.role === 'admin') {
-      window.location.href = '/nguoidung.html';
+      window.location.href = '/admin.html';
     } else {
       window.location.href = '/index.html';
     }
