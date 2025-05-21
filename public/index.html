@@ -8,34 +8,15 @@
 </head>
 <body>
   <header>
-    <div class="logo">Nước Giải Khát Mát Lạnh</div>
-    <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
+    <div class="logo">THANH TRA TEA</div>
     <div>
       <div id="userMenu"> 
         <button class="login-btn" onclick="toggleModal(true)">Đăng nhập</button>
         <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button></div>     
       </div>
   </header>
- <div class="sidebar">
-  <ul class="menu">
-    <li><a href="index.html"> Trang chủ</a></li>
-
-    <li class="has-submenu">
-      <a href="#" class="toggle-submenu"> Danh sách mặt hàng</a>
-      <ul class="submenu">
-        <a href="#">Trà</a>
-        <a href="#">Coffee</a>
-        <a href="#">Sinh tố</a>
-        <a href="#">Đồ ăn vặt</a>
-      </ul>
-    </li>
-
-    <li><a href="#"> Hàng bán chạy</a></li>
-    <li><a href="#"> Giới thiệu</a></li>
-  </ul>
-</div>
-
 <main><div class="container">
+   <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <h1>Danh sách sản phẩm</h1>
     <div class="products" id="product-list">
       <!-- san pham duoc them bang js -->
@@ -48,39 +29,7 @@
       <button onclick="toggleCart()">Đóng</button>
     </div>
   </div>
-  <!-- modal nhap so luong -->
-<div id="quantityModal" class="modal">
-  <div class="modal-content">
-    <h3>Nhập số lượng</h3>
-    <input type="number" id="quantityInput" min="1" value="1" />
-    <div style="margin-top: 10px;">
-      <button onclick="confirmAddToCart()">Xác nhận</button>
-      <hr>
-      <button onclick="closeQuantityModal()">Hủy</button>
-    </div>
-  </div>
-</div>
- <footer class="footer">
-    <div class="footer-container">
-      <div class="contact-item">
-        <i class="fab fa-facebook-f"></i>
-        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-comment-dots"></i>
-        <a href="#" target="_blank">Zalo</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-phone"></i>
-        <a href="#">0123 456 789</a>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <a href="#">duytung2506@gmail.com</a>
-      </div>
-    </div>
-  </footer>
-  <div id="modal-container"></div>
+  
  <div id="loginModal" class="modal">
     <div class="modal-content">
       <div class="tabs">
@@ -102,8 +51,42 @@
     </div>
     </div>
   </div>
+  <!-- modal nhap so luong -->
+<div id="quantityModal" class="modal">
+  <div class="modal-content">
+    <h3>Nhập số lượng</h3>
+    <input type="number" id="quantityInput" min="1" value="1" />
+    <div style="margin-top: 10px;">
+      <button onclick="confirmAddToCart()">Xác nhận</button>
+      <hr>
+      <button onclick="closeQuantityModal()">Hủy</button>
+    </div>
+  </div>
+</div>
+
+ <footer class="footer">
+    <div class="footer-container">
+      <div class="contact-item">
+        <i class="fab fa-facebook-f"></i>
+        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-comment-dots"></i>
+        <a href="#" target="_blank">Zalo</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone"></i>
+        <a href="#">0123 456 789</a>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope"></i>
+        <a href="#">duytung2506@gmail.com</a>
+      </div>
+    </div>
+  </footer>
 <!-- thong bao them gio hang thanh cong -->
 <div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>
+  <div id="modal-container"></div>
   <script src="script.js"></script>
 </body>
 </html>

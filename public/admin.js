@@ -49,15 +49,6 @@ async function resetPassword(id) {
   alert(data.message);
   loadUsers();
 }
-document.getElementById('searchInput').addEventListener('input', function () {
-  const keyword = this.value.toLowerCase();
-  const filtered = users.filter(user =>
-    user.username.toLowerCase().includes(keyword) ||
-    user.email.toLowerCase().includes(keyword) ||
-    user.role.toLowerCase().includes(keyword)
-  );
-  renderUsers(filtered);
-});
 loadUsers();
 
 document.getElementById('logoutBtn').addEventListener('click', () => {

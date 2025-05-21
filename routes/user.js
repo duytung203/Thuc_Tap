@@ -4,18 +4,12 @@ const db = require('../db');
 const bcrypt = require('bcrypt');
 
 // Lấy danh sách người dùng
-router.get('/users', async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT username, email, role FROM users');
-    res.json(rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Lỗi server' });
-  }
+router.get('/', (req, res) => {
+  db.query('SELECT id, username, email, role FROM users', (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
 });
-
-module.exports = router;
-
 
 // Thêm người dùng
 router.post('/', async (req, res) => {

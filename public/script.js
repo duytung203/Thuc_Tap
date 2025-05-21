@@ -94,7 +94,11 @@ function toggleModal(show) {
 
 fetch('index.html')
   .then(response => response.text())
-  .then(data => {document.getElementById('modal-container').innerHTML = data;
+  .then(htmlString => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    const modal = doc.querySelector('.modal'); // Chỉ lấy modal
+    document.getElementById('modal-container').appendChild(modal);
   });
 
 function toggleCart() {

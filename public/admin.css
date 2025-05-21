@@ -1,4 +1,4 @@
-/* Reset & font */
+
 * {
   margin: 0;
   padding: 0;
@@ -12,13 +12,10 @@ body {
   color: #333;
 }
 
-/* Tiêu đề */
 h1, h2 {
   margin-bottom: 20px;
   color: #2c3e50;
 }
-
-/* Bảng người dùng */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -44,7 +41,6 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
-/* Input và select */
 input, select {
   padding: 10px;
   margin-right: 10px;
@@ -53,7 +49,6 @@ input, select {
   border-radius: 4px;
 }
 
-/* Nút thêm */
 button {
   padding: 10px 20px;
   background-color: #2ecc71;
@@ -68,8 +63,6 @@ button {
 button:hover {
   background-color: #27ae60;
 }
-
-/* Nút hành động trong bảng */
 .action-btn {
   margin-right: 8px;
   padding: 6px 12px;
