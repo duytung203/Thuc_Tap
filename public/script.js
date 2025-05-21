@@ -1,18 +1,19 @@
 const products = [
-  { name: "Trà Chanh", price: 15000, image: "images/tra_chanh.jpg" },
-  { name: "Trà Sữa", price: 25000, image: "images/tra_sua.jpg" },
-  { name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
-  { name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
-    {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" }, 
+  {name: "Trà Chanh", price: 150000000000, image: "images/tra_chanh.jpg" },
+  {name: "Trà Sữa", price: 2500000, image: "images/tra_sua.jpg" },
+  {name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
+  {name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
+  {name: "Nước Cam", price: 20000, image: "images/nuoc_cam.jpg" },
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg"} ,
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
+  {name: "Cà Phê Đá Đen", price: 25000, image: "images/ca_phe_den.jpg" },
 ];
 
 const cart = [];
@@ -99,7 +100,7 @@ fetch('index.html')
     const doc = parser.parseFromString(htmlString, 'text/html');
     const modal = doc.querySelector('.modal'); // Chỉ lấy modal
     document.getElementById('modal-container').appendChild(modal);
-  });
+  });         
 
 function toggleCart() {
   const modal = document.getElementById("cartModal");
@@ -173,19 +174,13 @@ renderProducts();
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
   });
-
   const data = await res.json();
-
   if (res.ok) {
-    // lưu token và username vào localStorage
     localStorage.setItem('token', data.token);
     localStorage.setItem('username', data.username);
-
-    updateUserMenu();       // cập nhật giao diện người dùng
-    toggleModal(false);     // ẩn modal đăng nhập
-    alert(data.message);    // hiển thị thông báo
-
-    // điều hướng theo vai trò
+    updateUserMenu();      
+    toggleModal(false);    
+    alert(data.message);   
     if (data.role === 'admin') {
       window.location.href = '/admin.html';
     } else {

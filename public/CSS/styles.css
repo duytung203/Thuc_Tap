@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   background-image: url(../images/test_bg.jpg);
   background-size: auto;
@@ -8,54 +13,85 @@ body {
   color: #222;
   transition: background-color 0.3s, color 0.3s;
 }
-header {position: fixed;
+header {
   width: 100%;
-  z-index: 1000;
-  background-color: #009688;
-  color: white;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .logo {
-  font-family: 'Roboto Mono', monospace; ;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  flex: 1;
+}
+.main-header {
+  padding: 10px 20px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-nav {
+  flex: 2;
+  text-align: center;
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.main-nav ul li {
+  position: relative;
+}
+
+.main-nav ul li a {
+  text-decoration: none;
+  color: black;
   font-weight: bold;
 }
 
+.main-nav ul li:hover > a {
+  color: #ff7b00;
+}
+#userMenu {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .login-btn, .cart-btn {
-  background-color: white;
-  color: #009688;
-  border: none;
-  padding: 10px 15px;
-  margin-right: 40px;
-  cursor: pointer;
-  border-radius: 5px;
+    font-weight: bold;
+    background-color: rgb(218, 217, 208);
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 5px;
 }
 
 #search {
   text-align: center;
   padding: 10px;
   border-radius: 10px;
-  justify-content: center;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  margin: 10px 0;
   max-width: 200px;
 }
+
 .container h1{
   color: rgb(105, 170, 116);
 }
 .container {
   text-align: center;
-   display: flex;
-    flex-direction: column;
-   max-width: 1200px;
+  flex-direction: column;
+  max-width: 1200px;
   margin: auto;
 }
+
 
 .product-card {
   background: rgb(209, 195, 173);

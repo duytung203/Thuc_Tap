@@ -7,17 +7,32 @@
   <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
-  <header>
+  <header class="main-header">
+  <div class="header-content">
     <div class="logo">THANH TRA TEA</div>
     <div>
-      <div id="userMenu"> 
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">Cà phê</a></li>
+        <li><a href="#">Trà</a></li>
+        <li class="dropdown">
+          <a href="#">Menu</a>
+          <ul class="dropdown-menu"></ul>
+        </li>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Cửa hàng</a></li>
+        <li><a href="#">Tuyển dụng</a></li>
+      </ul>
+    </nav>
+     <div id="userMenu"> 
         <button class="login-btn" onclick="toggleModal(true)">Đăng nhập</button>
         <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button></div>     
       </div>
-  </header>
+  </div>
+</header>
 <main><div class="container">
-   <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <h1>Danh sách sản phẩm</h1>
+    <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
     <div class="products" id="product-list">
       <!-- san pham duoc them bang js -->
     </div>
