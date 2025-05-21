@@ -165,23 +165,33 @@ renderProducts();
   const password = document.querySelector('#loginForm input[type="password"]').value;
 
   const res = await fetch('/api/auth/login', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email, password })
-});
-
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
 
   const data = await res.json();
-  alert(data.message);
 
   if (res.ok) {
+    // lưu token và username vào localStorage
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('username', data.username);
+
+    updateUserMenu();       // cập nhật giao diện người dùng
+    toggleModal(false);     // ẩn modal đăng nhập
+    alert(data.message);    // hiển thị thông báo
+
+    // điều hướng theo vai trò
     if (data.role === 'admin') {
       window.location.href = '/nguoidung.html';
     } else {
       window.location.href = '/index.html';
     }
+  } else {
+    alert(data.message || 'Đăng nhập thất bại');
   }
 }
+
 
 
 document.getElementById('registerBtn')?.addEventListener('click', register);
@@ -212,7 +222,6 @@ function switchTab(tab) {
   buttons[tab === 'login' ? 0 : 1].classList.add('active');
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
   updateUserMenu();
 });
@@ -225,49 +234,33 @@ function updateUserMenu() {
   if (token && username && userMenu) {
     userMenu.innerHTML = `
       <div class="dropdown">
-        <button class="dropbtn">${username}</button>
-        <div class="dropdown-content">
-          <a href="#">Thông tin người dùng</a>
+        <button class="dropbtn" onclick="toggleUserMenu()">Xin chào ${username}</button>
+        <div class="dropdown-content" id="userDropdown">
+          <a href="user.html" target="_blank">Thông tin người dùng</a>
           <a href="#">Lịch sử giao dịch</a>
           <a href="#" onclick="logout()">Đăng xuất</a>
         </div>
+        <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button></div> 
       </div>
     `;
-
-    // Ẩn modal nếu đang hiển thị sau khi đăng nhập
     const modal = document.getElementById('loginModal');
     if (modal) toggleModal(false);
   }
 }
-  // login 
-  const loginBtn = document.getElementById('loginBtn');
-  loginBtn?.addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
+function toggleUserMenu() {
+  const dropdown = document.getElementById('userDropdown');
+  dropdown.classList.toggle('show');
+}
 
-    const res = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-  });
+function logout() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
 
-  // register
-  const registerBtn = document.getElementById('registerBtn');
-  registerBtn?.addEventListener('click', async () => {
-    const username = document.getElementById('registerUsername').value;
-    const email = document.getElementById('registerEmail').value;
-    const password = document.getElementById('registerPassword').value;
-
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password })
-    });
-
-    const data = await res.json();
-    alert(data.message);
-  });
-
+  const userMenu = document.getElementById('userMenu');
+  userMenu.innerHTML = `
+    <button class="login-btn" onclick="toggleModal(true)">Đăng nhập</button>
+    <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button>
+  `;
+}
 
 
