@@ -98,7 +98,7 @@ fetch('index.html')
   .then(htmlString => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, 'text/html');
-    const modal = doc.querySelector('.modal'); // Chỉ lấy modal
+    const modal = doc.querySelector('.modal'); 
     document.getElementById('modal-container').appendChild(modal);
   });         
 
@@ -138,7 +138,6 @@ window.onclick = function(event) {
   if (event.target === cartModal) cartModal.style.display = "none";
   if (event.target === quantityModal) closeQuantityModal();
 }
-
 document.getElementById("search").addEventListener("input", function(e) {
   const keyword = e.target.value.toLowerCase();
   const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
@@ -238,7 +237,8 @@ function updateUserMenu() {
           <a href="user.html" target="_blank">Thông tin người dùng</a>
           <a href="#">Lịch sử giao dịch</a>
           <a href="#" onclick="logout()">Đăng xuất</a>
-        </div>
+          </div>
+      </div>
         <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button></div> 
       </div>
     `;
@@ -262,4 +262,81 @@ function logout() {
   `;
 }
 
+let slideIndex = 0;
+let slideInterval;
+
+
+function initBanner() {
+  showSlides();
+  startSlideShow();
+
+  document.querySelector('.banner-prev').addEventListener('click', () => {
+    plusSlides(-1);
+    resetInterval();
+  });
+  
+  document.querySelector('.banner-next').addEventListener('click', () => {
+    plusSlides(1);
+    resetInterval();
+  });
+  
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      currentSlide(index);
+      resetInterval();
+    });
+  });
+}
+
+function showSlides() {
+  let i;
+  const slides = document.getElementsByClassName("banner-slide");
+  const dots = document.getElementsByClassName("dot");
+  
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  
+
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+function plusSlides(n) {
+  const slides = document.getElementsByClassName("banner-slide");
+  slideIndex += n;
+  
+  if (slideIndex > slides.length) {slideIndex = 1}
+  if (slideIndex < 1) {slideIndex = slides.length}
+  
+  showSlides();
+}
+
+function currentSlide(n) {
+  slideIndex = n + 1;
+  showSlides();
+}
+
+
+function startSlideShow() {
+  slideInterval = setInterval(() => {
+    showSlides();
+  }, 3000);
+}
+
+
+function resetInterval() {
+  clearInterval(slideInterval);
+  startSlideShow();
+}
+
+document.addEventListener('DOMContentLoaded', initBanner);
 

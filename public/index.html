@@ -5,31 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thanh Trà Coffee</title>
   <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header class="main-header">
+   <header class="main-header" role="banner">
   <div class="header-content">
-    <div class="logo">THANH TRA TEA</div>
+    <div class="logo" aria-label="Thanh Tra Tea">THANH TRA TEA</div>
     <div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="#">Cà phê</a></li>
-        <li><a href="#">Trà</a></li>
-        <li class="dropdown">
-          <a href="#">Menu</a>
-          <ul class="dropdown-menu"></ul>
-        </li>
-        <li><a href="#">Giới thiệu</a></li>
-        <li><a href="#">Cửa hàng</a></li>
-        <li><a href="#">Tuyển dụng</a></li>
-      </ul>
-    </nav>
-     <div id="userMenu"> 
-        <button class="login-btn" onclick="toggleModal(true)">Đăng nhập</button>
-        <button class="cart-btn" onclick="toggleCart()">Giỏ hàng (<span id="cart-count">0</span>)</button></div>     
-      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Trang chủ</a></li>
+          <li><a href="#">Cửa hàng</a></li>
+          <li><a href="#">Trà</a></li>
+          <li class="menuchinh" aria-haspopup="true" aria-expanded="false">
+            <a href="#">Menu</a>
+            <ul class="menuphu" role="menu">
+              <li><a href="#" role="menuitem">Bánh ngọt</a></li>
+              <li><a href="#" role="menuitem">Đồ ăn vặt</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Giới thiệu</a></li>
+          <li><a href="#">Tuyển dụng</a></li>
+        </ul>
+      </nav>
+      <div id="userMenu"> 
+        <button class="login-btn" onclick="toggleModal(true)" aria-label="Đăng nhập">Đăng nhập</button>
+        <button class="cart-btn" onclick="toggleCart()" aria-label="Giỏ hàng">
+          Giỏ hàng (<span id="cart-count" aria-live="polite">0</span>)
+        </button>
+      </div>     
+    </div>
   </div>
 </header>
+<div class="banner-container">
+  <div class="banner-slide">
+    <img src="images/images.jpg" alt="Khuyến mãi 1 - FREESHIP 4 DÙ CHÍ 1 LY">
+    <div class="banner-text">
+      <h3>FREESHIP 4 DÙ CHỈ 1 LY</h3>
+      <p>Thứ 7 - Chủ Nhật 01.05 - 31.05</p>
+      <small>Áp dụng cho đơn Giao hàng khi có 1 sản phẩm nước</small>
+    </div>
+  </div>
+  
+  <div class="banner-slide">
+    <img src="images/daiduong2_11zon.png" alt="Khuyến mãi 2 - FREESHIP2025">
+    <div class="banner-text">
+      <h3>FREESHIP2025</h3>
+      <p>Ưu đãi đặc biệt từ THANH TRA TEA</p>
+    </div>
+  </div>
+  
+  <div class="banner-slide">
+    <img src="images/anh_nuoc2.jpg" alt="Khuyến mãi 3 - Chương trình khuyến mãi">
+    <div class="banner-text">
+      <h3>CHƯƠNG TRÌNH KHUYẾN MÃI</h3>
+      <p>Nhiều ưu đãi hấp dẫn đang chờ bạn</p>
+    </div>
+  </div>
+  
+  <button class="banner-prev">&#10094;</button>
+  <button class="banner-next">&#10095;</button>
+  
+  <div class="banner-dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</div>
 <main><div class="container">
     <h1>Danh sách sản phẩm</h1>
     <input type="text" id="search" placeholder="Tìm kiếm sản phẩm...">
@@ -79,29 +121,56 @@
   </div>
 </div>
 
- <footer class="footer">
-    <div class="footer-container">
-      <div class="contact-item">
-        <i class="fab fa-facebook-f"></i>
-        <a href="https://www.facebook.com/tung.duy.7798/?locale=vi_VN" target="_blank">Facebook</a>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Về chúng tôi</h3>
+      <p>Thanh Tra Tea - Thương hiệu trà và cà phê chất lượng cao từ 2025</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
       </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Liên hệ</h3>
       <div class="contact-item">
-        <i class="fas fa-comment-dots"></i>
-        <a href="#" target="_blank">Zalo</a>
+        <i class="fas fa-map-marker-alt"></i>
+        <a href="#">123 Đường ABC, TP.HÀ NỘi</a>
       </div>
       <div class="contact-item">
         <i class="fas fa-phone"></i>
-        <a href="#">0123 456 789</a>
+        <a href="tel:0123456789">0123 456 789</a>
       </div>
       <div class="contact-item">
         <i class="fas fa-envelope"></i>
-        <a href="#">duytung2506@gmail.com</a>
+        <a href="mailto:duytung2506@gmail.com">duytung2506@gmail.com</a>
       </div>
     </div>
-  </footer>
+
+    <div class="footer-col">
+      <h3>Giờ mở cửa</h3>
+      <p>Thứ 2 - Thứ 6: 7:00 - 21:00</p>
+      <p>Thứ 7 - CN: 8:00 - 22:00</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Đăng ký nhận tin</h3>
+      <div class="newsletter">
+        <input type="email" placeholder="Email của bạn">
+        <button>Đăng ký</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2023 Thanh Tra Tea. All Rights Reserved.</p>
+  </div>
+</footer>
 <!-- thong bao them gio hang thanh cong -->
 <div id="toast" class="toast">Đã thêm vào giỏ hàng!</div>
   <div id="modal-container"></div>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

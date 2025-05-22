@@ -47,7 +47,6 @@ module.exports = (db) => {
       if (!match) return res.status(401).json({ message: 'Sai mật khẩu' });
 
       const token = jwt.sign({ id: user.id, role: user.role }, SECRET, { expiresIn: '1h' });
-
       res.json({
         message: 'Đăng nhập thành công',
         token,
