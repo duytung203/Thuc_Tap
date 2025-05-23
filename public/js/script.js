@@ -269,16 +269,6 @@ let slideInterval;
 function initBanner() {
   showSlides();
   startSlideShow();
-
-  document.querySelector('.banner-prev').addEventListener('click', () => {
-    plusSlides(-1);
-    resetInterval();
-  });
-  
-  document.querySelector('.banner-next').addEventListener('click', () => {
-    plusSlides(1);
-    resetInterval();
-  });
   
   const dots = document.querySelectorAll('.dot');
   dots.forEach((dot, index) => {
@@ -329,7 +319,7 @@ function currentSlide(n) {
 function startSlideShow() {
   slideInterval = setInterval(() => {
     showSlides();
-  }, 3000);
+  }, 3500);
 }
 
 

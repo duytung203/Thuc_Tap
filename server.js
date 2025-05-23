@@ -18,7 +18,6 @@ app.use(session({
   cookie: {
     maxAge: 3600000,
     httpOnly: true,
-    secure: false
   }
 }));
 app.use(express.json());

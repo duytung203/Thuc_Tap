@@ -68,7 +68,7 @@ async function saveField(field) {
 
     const response = await fetch("/api/user/update", {
       method: "PUT",
-      credentials: "include", // Rất quan trọng để gửi cookie session
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ [field]: value })
     });
@@ -90,8 +90,8 @@ async function saveField(field) {
 
 async function handleChangePassword() {
   try {
-    const oldPassword = await showPasswordForm("🔐 Nhập mật khẩu cũ:");
-    const newPassword = await showPasswordForm("🆕 Nhập mật khẩu mới:");
+    const oldPassword = await showPasswordForm("Nhập mật khẩu cũ:");
+    const newPassword = await showPasswordForm("Nhập mật khẩu mới:");
     const response = await fetch("/api/user/password", {
       method: "PUT",
       credentials: "include",

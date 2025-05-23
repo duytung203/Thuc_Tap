@@ -573,7 +573,7 @@ button[onclick="register()"]:hover {
 .banner-container {
   max-width: 100%;
   position: relative;
-  margin: 20px auto;
+  margin: auto;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
@@ -588,7 +588,7 @@ button[onclick="register()"]:hover {
 .banner-slide img {
   width: 100%;
   height: auto;
-  max-height: 400px;
+  max-height: 600px;
   object-fit: cover;
 }
 
@@ -597,16 +597,15 @@ button[onclick="register()"]:hover {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 20px;
+  color: rgb(3, 3, 3);
+  padding: 40px;
   text-align: center;
 }
 
 .banner-text h3 {
   margin: 0;
   font-size: 1.5em;
-  color: #fff;
+  color: #000000;
 }
 
 .banner-text p {
@@ -620,35 +619,10 @@ button[onclick="register()"]:hover {
   margin-top: 5px;
 }
 
-.banner-prev, .banner-next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  background-color: rgba(0,0,0,0.3);
-  border: none;
-}
-
-.banner-next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-.banner-prev:hover, .banner-next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
 
 .banner-dots {
   text-align: center;
-  padding: 10px;
+  padding: 1px;
   position: absolute;
   bottom: 10px;
   left: 0;
