@@ -30,31 +30,29 @@ module.exports = (db) => {
 });
 
   // Đăng nhập tài khoản
-  router.post('/login', (req, res) => {
-    const { email, password } = req.body;
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: 'Vui lòng nhập email và mật khẩu' });
-    }
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Vui lòng nhập email và mật khẩu' });
+  }
+  const sql = 'SELECT * FROM users WHERE email = ?';
+  db.query(sql, [email], async (err, results) => {
+    if (err) return res.status(500).json({ message: 'Lỗi máy chủ', error: err });
+    if (results.length === 0) return res.status(401).json({ message: 'Sai thông tin đăng nhập' });
 
-    const sql = 'SELECT * FROM users WHERE email = ?';
-    db.query(sql, [email], async (err, results) => {
-      if (err) return res.status(500).json({ message: 'Lỗi máy chủ', error: err });
-      if (results.length === 0) return res.status(401).json({ message: 'Sai thông tin đăng nhập' });
-
-      const user = results[0];
-      const match = await bcrypt.compare(password, user.password);
-      if (!match) return res.status(401).json({ message: 'Sai mật khẩu' });
-
-      const token = jwt.sign({ id: user.id, role: user.role }, SECRET, { expiresIn: '1h' });
+    const user = results[0];
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(401).json({ message: 'Sai mật khẩu' });
+      req.session.userId = user.id;
+      req.session.role = user.role;
       res.json({
-        message: 'Đăng nhập thành công',
-        token,
-        role: user.role,
-        username: user.username
-      });
+      message: 'Đăng nhập thành công',
+      role: user.role,
+      username: user.username
     });
   });
+});
 
   return router;
 };

@@ -167,10 +167,10 @@ renderProducts();
   async function login() {
   const email = document.querySelector('#loginForm input[type="text"]').value;
   const password = document.querySelector('#loginForm input[type="password"]').value;
-
   const res = await fetch('/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: "include",
     body: JSON.stringify({ email, password })
   });
   const data = await res.json();
@@ -234,7 +234,7 @@ function updateUserMenu() {
       <div class="dropdown">
         <button class="dropbtn" onclick="toggleUserMenu()">Xin chào ${username}</button>
         <div class="dropdown-content" id="userDropdown">
-          <a href="user.html" target="_blank">Thông tin người dùng</a>
+          <a href="nguoidung.html" target="_blank">Thông tin người dùng</a>
           <a href="#">Lịch sử giao dịch</a>
           <a href="#" onclick="logout()">Đăng xuất</a>
           </div>

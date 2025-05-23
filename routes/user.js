@@ -55,58 +55,77 @@ router.put('/:id/reset', async (req, res) => {
     res.json({ message: 'Đặt lại mật khẩu thành công (123456)' });
   });
 });
+module.exports = router;
+ // load người dùngdùng
+router.get('/info', (req, res) => {
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "Bạn chưa đăng nhập" });
+  }
 
-// Lấy thông tin người dùng đã đăng nhập
-router.get('/info', authMiddleware, (req, res) => {
-  const userId = req.session.userId;
-  const sql = 'SELECT id, username, email, role, firstname, lastname FROM users WHERE id = ?';
-  db.query(sql, [userId], (err, results) => {
-    if (err) return res.status(500).send('Lỗi máy chủ');
-    if (results.length === 0) return res.status(404).send('Không tìm thấy người dùng');
+  const sql = 'SELECT username, email FROM users WHERE id = ?';
+  db.query(sql, [req.session.userId], (err, results) => {
+    if (err) return res.status(500).json({ message: "Lỗi máy chủ" });
+    if (results.length === 0) return res.status(404).json({ message: "Không tìm thấy người dùng" });
+
     res.json(results[0]);
   });
 });
 
-// Cập nhật thông tin họ, tên, email
-router.put('/update', authMiddleware, (req, res) => {
-  const userId = req.session.userId;
+// Cập nhật username hoặc email
+router.put('/update', (req, res) => {
   const { username, email } = req.body;
+  const userId = req.session.userId;
+  if (!userId) return res.status(401).json({ message: "Bạn chưa đăng nhập" });
 
-  const sql = `UPDATE users SET
-    username = COALESCE(?, username),
-    email = COALESCE(?, email)
-    WHERE id = ?`;
+  const updates = [];
+  const values = [];
 
-  db.query(sql, [username, email, userId], (err, result) => {
-    if (err) {
-      if (err.code === 'ER_DUP_ENTRY') {
-        return res.status(400).send('Email đã tồn tại');
-      }
-      return res.status(500).send('Lỗi cập nhật thông tin');
-    }
-    res.send('Cập nhật thành công');
+  if (username) {
+    updates.push('username = ?');
+    values.push(username);
+  }
+  if (email) {
+    updates.push('email = ?');
+    values.push(email);
+  }
+
+  if (updates.length === 0) {
+    return res.status(400).json({ message: "Không có dữ liệu để cập nhật" });
+  }
+
+  const sql = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
+  values.push(userId);
+
+  db.query(sql, values, (err) => {
+    if (err) return res.status(500).json({ message: "Lỗi máy chủ" });
+    res.json({ message: "Cập nhật thành công" });
   });
 });
+
 
 // Đổi mật khẩu
-router.put('/password', authMiddleware, (req, res) => {
-  const userId = req.session.userId;
+router.put('/password', (req, res) => {
   const { oldPassword, newPassword } = req.body;
+  const userId = req.session.userId;
 
-  const sql = 'SELECT password FROM users WHERE id = ?';
-  db.query(sql, [userId], async (err, results) => {
-    if (err) return res.status(500).send('Lỗi máy chủ');
-    if (results.length === 0) return res.status(404).send('Không tìm thấy người dùng');
+  if (!userId || !oldPassword || !newPassword) {
+    return res.status(400).json({ message: "Thiếu dữ liệu" });
+  }
 
-    const match = await bcrypt.compare(oldPassword, results[0].password);
-    if (!match) return res.status(400).send('Mật khẩu cũ không đúng');
+  const sqlGet = 'SELECT password FROM users WHERE id = ?';
+  db.query(sqlGet, [userId], async (err, results) => {
+  if (err) return res.status(500).json({ message: "Lỗi máy chủ" });
+  if (results.length === 0) return res.status(404).json({ message: "Không tìm thấy người dùng" });
 
-    const hashed = await bcrypt.hash(newPassword, 10);
-    db.query('UPDATE users SET password = ? WHERE id = ?', [hashed, userId], (err) => {
-      if (err) return res.status(500).send('Lỗi đổi mật khẩu');
-      res.send('Đổi mật khẩu thành công');
-    });
+  const match = await bcrypt.compare(oldPassword, results[0].password);
+  if (!match) return res.status(403).json({ message: "Mật khẩu cũ không đúng" });
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  const sqlUpdate = 'UPDATE users SET password = ? WHERE id = ?';
+  db.query(sqlUpdate, [hashedPassword, userId], (err) => {
+    if (err) return res.status(500).json({ message: "Lỗi khi cập nhật mật khẩu" });
+    res.json({ message: "Đổi mật khẩu thành công" });
   });
 });
+});
 
-module.exports = router;
