@@ -239,7 +239,7 @@ h2 {
   background-color: #2a5a3b;
   color: #fff;
   padding: 50px 0 20px;
-  margin-top: 50px;
+  margin-top: 460px;
 }
 
 .footer-container {
@@ -336,5 +336,72 @@ h2 {
 .newsletter button:hover {
   background-color: #c8e6c9;
 }
+
+.password-form {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      min-width: 300px;
+}
+
+.password-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2a5a3b;
+  font-size: 16px;
+}
+
+.password-form input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+.password-form input[type="password"]:focus {
+  outline: none;
+  border-color: #2a5a3b;
+  box-shadow: 0 0 0 2px rgba(42, 90, 59, 0.2);
+}
+
+.password-form button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-right: 10px;
+}
+
+.password-form button[type="submit"] {
+  background-color: #2a5a3b;
+  color: white;
+}
+
+.password-form button[type="submit"]:hover {
+  background-color: #1d472b;
+}
+
+.password-form button[type="button"] {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.password-form button[type="button"]:hover {
+  background-color: #3d9e52;
+}
+
 
 

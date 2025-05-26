@@ -1,7 +1,9 @@
 const express = require('express');
-const router = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
+
+module.exports = (db) => {
+  const router = express.Router();
 
 
 const authMiddleware = (req, res, next) => {
@@ -55,8 +57,8 @@ router.put('/:id/reset', async (req, res) => {
     res.json({ message: 'Đặt lại mật khẩu thành công (123456)' });
   });
 });
-module.exports = router;
- // load người dùngdùng
+
+ // load người dùng
 router.get('/info', (req, res) => {
   if (!req.session.userId) {
     return res.status(401).json({ message: "Bạn chưa đăng nhập" });
@@ -72,21 +74,32 @@ router.get('/info', (req, res) => {
 });
 
 // Cập nhật username hoặc email
-router.put('/update', (req, res) => {
+
+router.post('/update', (req, res) => {
   const { username, email } = req.body;
   const userId = req.session.userId;
-  if (!userId) return res.status(401).json({ message: "Bạn chưa đăng nhập" });
+
+  if (!userId) {
+    return res.status(401).json({ message: "Bạn chưa đăng nhập" });
+  }
 
   const updates = [];
   const values = [];
 
   if (username) {
+    if (username.trim() === '') {
+      return res.status(400).json({ message: "Tên người dùng không hợp lệ" });
+    }
     updates.push('username = ?');
-    values.push(username);
+    values.push(username.trim());
   }
+
   if (email) {
+    if (email.trim() === '') {
+      return res.status(400).json({ message: "Email không hợp lệ" });
+    }
     updates.push('email = ?');
-    values.push(email);
+    values.push(email.trim());
   }
 
   if (updates.length === 0) {
@@ -96,15 +109,19 @@ router.put('/update', (req, res) => {
   const sql = `UPDATE users SET ${updates.join(', ')} WHERE id = ?`;
   values.push(userId);
 
-  db.query(sql, values, (err) => {
-    if (err) return res.status(500).json({ message: "Lỗi máy chủ" });
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      return res.status(500).json({ message: "Lỗi máy chủ", error: err });
+    }
     res.json({ message: "Cập nhật thành công" });
   });
 });
 
 
+
+
 // Đổi mật khẩu
-router.put('/password', (req, res) => {
+router.post('/password', (req, res) => {
   const { oldPassword, newPassword } = req.body;
   const userId = req.session.userId;
 
@@ -127,5 +144,6 @@ router.put('/password', (req, res) => {
     res.json({ message: "Đổi mật khẩu thành công" });
   });
 });
-});
-
+})
+return router;
+};

@@ -1,9 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const router = express.Router();
-const SECRET = 'secret_key';
 
 module.exports = (db) => {
   // Đăng ký tài khoản (chỉ tạo user)
@@ -53,6 +51,5 @@ router.post('/login', (req, res) => {
     });
   });
 });
-
   return router;
 };
